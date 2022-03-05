@@ -1,0 +1,64 @@
+import java.util.Scanner;
+import java.util.Arrays;
+
+public class Main {
+    public static void main(String[] args) {          
+        int[] vetor = LerVetor(); 
+        MaiorDiferenca(vetor);
+        EstaEmOrdemCrescente(vetor);
+    }
+  
+    public static int[] LerVetor() 
+    {
+        Scanner leitor = new Scanner(System.in);
+        System.out.print("Quantos números serão inseridos? ");
+        int quantidadeVetor = leitor.nextInt();
+        int vetor[] = new int [quantidadeVetor];
+
+        for (int i = 0; i < vetor.length; i++) {
+            System.out.print("Número (" + (i + 1) + "): ");
+            vetor[i] = leitor.nextInt();
+        } 
+
+        return vetor;
+    }
+  
+    public static void MaiorDiferenca(int[] vetor) 
+    {
+        int menorNumero = vetor[0];
+        int maiorNumero = vetor[0];
+
+        for (int i = 0; i < vetor.length; i++) {
+            if (vetor[i] > maiorNumero) {
+                maiorNumero = vetor[i];
+            }
+            if (vetor[i] < menorNumero) {
+                menorNumero = vetor[i];
+            }
+        }
+        
+        System.out.println("Maior Número digitado: " + maiorNumero);
+        System.out.println("Menor Número digitado: " + menorNumero);
+        System.out.println("Diferença entre números (maior): " + (maiorNumero - menorNumero));
+    }
+
+    public static boolean EstaEmOrdemCrescente(int[] vetor) 
+    {
+        boolean estaEmOrdemCrescente = true;
+        int ultimoValorVerificado = Integer.MIN_VALUE;
+
+        for (int i = 0; i < vetor.length; i++) {
+            if (vetor[i] < ultimoValorVerificado) {
+                estaEmOrdemCrescente = false;
+            }       
+            ultimoValorVerificado = vetor[i];
+        }
+        if  (estaEmOrdemCrescente) {
+            System.out.println("True - Os números FORAM inseridos em ordem crescente");
+        } else {
+            System.out.println("False - Os números NÃO foram inseridos em ordem crescente");
+        }
+
+        return estaEmOrdemCrescente;
+    }
+}
